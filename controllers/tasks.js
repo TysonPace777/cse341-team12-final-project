@@ -18,20 +18,35 @@ const getAll = async (req, res) => {
 
 //get one task
 const getSingle = async (req, res) => {
-    try {
-        if (!ObjectId.isValid(req.params.id)) {
-            return res.status(400).json({ error: 'Must use a valid task ID.' });
-        }
-        const userId = new ObjectId(req.params.id);
-        const result = await mongodb.getDatabase().db().collection('tasks').find({ _id: userId });
-        result.toArray().then((users) => {
-            res.setHeader('Content-type', 'application/json');
-            res.status(200).json(users[0]);
-        });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Internal Server Error' });
+  try {
+    const rawId = String(req.params.id).trim();
+    if (ObjectId.isValid(rawId)) {
+      const byOid = await mongodb
+        .getDatabase()
+        .db()
+        .collection('tasks')
+        .findOne({ _id: new ObjectId(rawId) });
+
+      if (byOid) {
+        return res.status(200).json(byOid);
+      }
     }
+
+    const byString = await mongodb
+      .getDatabase()
+      .db()
+      .collection('tasks')
+      .findOne({ _id: rawId });
+
+    if (byString) {
+      return res.status(200).json(byString);
+    }
+
+    return res.status(404).json({ message: 'Task not found' });
+  } catch (err) {
+    console.error('getSingle error:', err);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
 };
 
 
