@@ -18,7 +18,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/', require('./routes'));
 
 mongodb.initDb((err) => {
-    if(err) {
+    if (err) {
         console.log(err);
     }
     else {

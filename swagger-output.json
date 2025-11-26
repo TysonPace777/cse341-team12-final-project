@@ -1,0 +1,25 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Team 12 API",
+    "description": "planner api",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
