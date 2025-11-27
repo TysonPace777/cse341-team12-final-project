@@ -7,4 +7,6 @@ const taskController = require('../controllers/tasks');
 router.get('/:id', utilities.handleErrors(taskController.getSingle));
 router.get('/', utilities.handleErrors(taskController.getAll));
 
+router.delete('/:id', utilities.handleErrors(taskController.deleteTask));
+
 module.exports = router;
