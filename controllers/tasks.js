@@ -56,13 +56,14 @@ const deleteTask = async (req, res) => {
   }
   const taskId = new ObjectId(req.params.id);
   try {
-    const response = await mongodb.getDb().collection('tasks').deleteOne({ _id: taskId });
+    const response = await mongodb.getDatabase().db().collection('tasks').deleteOne({ _id: taskId });
     if (response.deletedCount > 0) {
       res.status(204).send();
     } else {
       res.status(404).json(response.error || 'Task not found.');
     }
   } catch (err) {
+    console.error('deleteTask error:', err, typeof err);
     res.status(500).json({ message: err });
   }
 };
