@@ -34,6 +34,25 @@ const getSingle = async (req, res) => {
   }
 };
 
+
+const deleteUser = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    return res.status(400).json('Must use a valid user id to delete a user.');
+  }
+  const userId = new ObjectId(req.params.id);
+  try {
+    const response = await mongodb.getDb().collection('user').deleteOne({ _id: userId });
+    if (response.deletedCount > 0) {
+      res.status(204).send();
+    } else {
+      res.status(404).json(response.error || 'User not found.');
+    }
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+};
+
 module.exports = {
-    getSingle
+    getSingle,
+    deleteUser
 };

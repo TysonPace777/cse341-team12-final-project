@@ -50,7 +50,25 @@ const getSingle = async (req, res) => {
 };
 
 
+const deleteTask = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    return res.status(400).json('Must use a valid task id to delete a task.');
+  }
+  const taskId = new ObjectId(req.params.id);
+  try {
+    const response = await mongodb.getDb().collection('tasks').deleteOne({ _id: taskId });
+    if (response.deletedCount > 0) {
+      res.status(204).send();
+    } else {
+      res.status(404).json(response.error || 'Task not found.');
+    }
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+};
+
 module.exports = {
     getAll,
     getSingle,
+    deleteTask
 };
