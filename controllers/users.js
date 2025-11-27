@@ -36,21 +36,30 @@ const getSingle = async (req, res) => {
 
 
 const deleteUser = async (req, res) => {
-  if (!ObjectId.isValid(req.params.id)) {
-    return res.status(400).json('Must use a valid user id to delete a user.');
-  }
-  const userId = new ObjectId(req.params.id);
   try {
-    const response = await mongodb.getDb().collection('user').deleteOne({ _id: userId });
+    const rawId = String(req.params.id).trim();
+
+    if (!ObjectId.isValid(rawId)) {
+      return res.status(400).json({ message: 'Must use a valid ObjectId to delete a user.' });
+    }
+
+    const userId = new ObjectId(rawId);
+    console.log('Deleting user with ID:', userId);
+
+    const response = await mongodb.getDatabase().db().collection('user').deleteOne({ _id: userId });
+    console.log('Delete response:', response);
+
     if (response.deletedCount > 0) {
-      res.status(204).send();
+      return res.status(204).send(); // success, no content
     } else {
-      res.status(404).json(response.error || 'User not found.');
+      return res.status(404).json({ message: 'User not found.' });
     }
   } catch (err) {
-    res.status(500).json({ message: err });
+    console.error('deleteUser error:', err, typeof err);
+    return res.status(500).json({ message: err.message });
   }
 };
+
 
 module.exports = {
     getSingle,
