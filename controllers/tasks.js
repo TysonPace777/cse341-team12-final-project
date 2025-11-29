@@ -61,6 +61,21 @@ const createTask = async (req, res) => {
   }
 };
 
+// Update Task
+const updateTask = async (req, res) => {
+  try {
+    const taskId = new ObjectId(req.params.id);
+    const { what, amount, reps, where, day, time } = req.body;
+    const updatedTask = { what, amount, reps, where, day, time };
+    const response = await mongodb.getDatabase().db().collection('tasks').updateOne({ _id: taskId }, { $set: updatedTask });
+
+    if (response.modifiedCount > 0) return res.status(200).json({ message: 'Task updated' });
+    res.status(404).json({ error: 'Task not found or no changes made' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 const deleteTask = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     return res.status(400).json('Must use a valid task id to delete a task.');
@@ -83,5 +98,6 @@ module.exports = {
     getAll,
     getSingle,
     deleteTask, 
-    createTask
+    createTask, 
+    updateTask
 };

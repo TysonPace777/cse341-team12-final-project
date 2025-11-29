@@ -2,14 +2,14 @@
 http://localhost:5000/tasks 
 
 ### Get task by Id
-http://localhost:5000/tasks/692671fe3f354dc56933b378
+http://localhost:5000/tasks/692a49c08b79cdb82f436921
 
 ### Create task
 POST http://localhost:5000/tasks
 content-type: application/json
 
 {
-  
+
   "what": "6 mile run",
   "amount": "1",
   "reps": "1",
@@ -18,15 +18,18 @@ content-type: application/json
   "time": "7 pm"
 }
 
-### Put Book by Id
-PUT http://localhost:5000/tasks/6919c7c6a4981960c5cc1e1b HTTP/1.1 
+### Put Task by Id
+PUT http://localhost:5000/tasks/692a49c08b79cdb82f436921 HTTP/1.1 
 content-type: application/json
 
 {
-  "name": "Chimamanda Adichie",
-  "birthYear": 1977,
-  "nationality": "American"
+  "what": "2 mile run",
+  "amount": "1",
+  "reps": "1",
+  "where": "track",
+  "day": "Thursday",
+  "time": "9 pm"
 }
 
 ### Delete task by id
-DELETE http://localhost:5000/tasks/691c1970dc692d6ba1f1c708 HTTP/1.1 
+DELETE http://localhost:5000/tasks/692a49c08b79cdb82f436921 HTTP/1.1 
