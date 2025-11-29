@@ -84,23 +84,32 @@ const createTask = async (req, res) => {
     }
 };
 
-//update a task
+// Post Task
+const createTask = async (req, res) => {
+  try {
+    const { what, amount, reps, where, day, time } = req.body;
+    const task = { what, amount, reps, where, day, time };
+    const response = await mongodb.getDatabase().db().collection('tasks').insertOne(task);
+    res.status(201).json({ message: 'Task created', id: response.insertedId });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Update Task
 const updateTask = async (req, res) => {
-    //validate id
-    if (!ObjectId.isValid(req.params.id)) {
-        return res
-            .status(400)
-            .json("Must use a valid task id to update a task.");
-    }
-    //create updated task object
-    const updatedTask = {
-        what: req.body.what,
-        amount: req.body.amount,
-        reps: req.body.reps,
-        where: req.body.where,
-        day: req.body.day,
-        time: req.body.time,
-    };
+  try {
+    const taskId = new ObjectId(req.params.id);
+    const { what, amount, reps, where, day, time } = req.body;
+    const updatedTask = { what, amount, reps, where, day, time };
+    const response = await mongodb.getDatabase().db().collection('tasks').updateOne({ _id: taskId }, { $set: updatedTask });
+
+    if (response.modifiedCount > 0) return res.status(200).json({ message: 'Task updated' });
+    res.status(404).json({ error: 'Task not found or no changes made' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
     //get task id
     const taskId = new ObjectId(req.params.id);
@@ -151,7 +160,7 @@ const deleteTask = async (req, res) => {
 module.exports = {
     getAll,
     getSingle,
-    createTask,
-    updateTask,
-    deleteTask,
+    deleteTask, 
+    createTask, 
+    updateTask
 };

@@ -1,0 +1,35 @@
+### GetAll
+http://localhost:5000/tasks 
+
+### Get task by Id
+http://localhost:5000/tasks/692a49c08b79cdb82f436921
+
+### Create task
+POST http://localhost:5000/tasks
+content-type: application/json
+
+{
+
+  "what": "6 mile run",
+  "amount": "1",
+  "reps": "1",
+  "where": "track",
+  "day": "Wednesday",
+  "time": "7 pm"
+}
+
+### Put Task by Id
+PUT http://localhost:5000/tasks/692a49c08b79cdb82f436921 HTTP/1.1 
+content-type: application/json
+
+{
+  "what": "2 mile run",
+  "amount": "1",
+  "reps": "1",
+  "where": "track",
+  "day": "Thursday",
+  "time": "9 pm"
+}
+
+### Delete task by id
+DELETE http://localhost:5000/tasks/692a49c08b79cdb82f436921 HTTP/1.1 
