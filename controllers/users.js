@@ -1,6 +1,24 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
+// Gets all users
+const getAll = async (req, res) => {
+  try {
+    const users = await mongodb
+      .getDatabase()
+      .db()
+      .collection('user') 
+      .find()
+      .toArray();
+
+    return res.status(200).json(users);
+  } catch (err) {
+    console.error('getAll error:', err);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
 //gets one user
 const getSingle = async (req, res) => {
   try {
@@ -62,6 +80,7 @@ const deleteUser = async (req, res) => {
 
 
 module.exports = {
-    getSingle,
-    deleteUser
+  getAll,
+  getSingle,
+  deleteUser
 };

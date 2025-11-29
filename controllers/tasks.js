@@ -49,6 +49,17 @@ const getSingle = async (req, res) => {
   }
 };
 
+// Post Task
+const createTask = async (req, res) => {
+  try {
+    const { what, amount, reps, where, day, time } = req.body;
+    const task = { what, amount, reps, where, day, time };
+    const response = await mongodb.getDatabase().db().collection('tasks').insertOne(task);
+    res.status(201).json({ message: 'Task created', id: response.insertedId });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 const deleteTask = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
@@ -71,5 +82,6 @@ const deleteTask = async (req, res) => {
 module.exports = {
     getAll,
     getSingle,
-    deleteTask
+    deleteTask, 
+    createTask
 };
