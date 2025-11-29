@@ -91,8 +91,7 @@
           }
         }
       },
-      "/tasks/{id}": {
-        "delete": {
+      "delete": {
           "description": "",
           "parameters": [
             {
@@ -116,7 +115,6 @@
               "description": "Internal Server Error"
             }
           }
-        }
       }
     }
   }

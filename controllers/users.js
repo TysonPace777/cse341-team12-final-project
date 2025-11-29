@@ -36,6 +36,7 @@ const getSingle = async (req, res) => {
 
 
 const deleteUser = async (req, res) => {
+  console.log('deleteUser called with ID:', req.params.id);
   try {
     const rawId = String(req.params.id).trim();
 
