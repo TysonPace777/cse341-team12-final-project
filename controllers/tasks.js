@@ -54,15 +54,15 @@ const getSingle = async (req, res) => {
 
 //post a new task
 const createTask = async (req, res) => {
-    //create task object
-    const newTask = {
-        what: req.body.what,
-        amount: req.body.amount,
-        reps: req.body.reps,
-        where: req.body.where,
-        day: req.body.day,
-        time: req.body.time,
-    };
+  //create task object
+  const newTask = {
+    what: req.body.what,
+    amount: req.body.amount,
+    reps: req.body.reps,
+    where: req.body.where,
+    day: req.body.day,
+    time: req.body.time,
+  };
 
     //insert the task
     try {
@@ -84,17 +84,17 @@ const createTask = async (req, res) => {
     }
 };
 
-// Post Task
-const createTask = async (req, res) => {
-  try {
-    const { what, amount, reps, where, day, time } = req.body;
-    const task = { what, amount, reps, where, day, time };
-    const response = await mongodb.getDatabase().db().collection('tasks').insertOne(task);
-    res.status(201).json({ message: 'Task created', id: response.insertedId });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+// // Post Task
+// const createTask = async (req, res) => {
+//   try {
+//     const { what, amount, reps, where, day, time } = req.body;
+//     const task = { what, amount, reps, where, day, time };
+//     const response = await mongodb.getDatabase().db().collection('tasks').insertOne(task);
+//     res.status(201).json({ message: 'Task created', id: response.insertedId });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
 
 // Update Task
 const updateTask = async (req, res) => {
@@ -109,27 +109,6 @@ const updateTask = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-};
-
-    //get task id
-    const taskId = new ObjectId(req.params.id);
-
-    //update the task
-    try {
-        const response = await mongodb
-            .getDatabase()
-            .db()
-            .collection("tasks")
-            .updateOne({ _id: taskId }, { $set: updatedTask });
-        if (response.acknowledged) {
-            res.status(200).json(response);
-        } else {
-            res.status(404).json(response.error || "Task not found.");
-        }
-    } catch (err) {
-        console.error("updateTask error:", err, typeof err);
-        res.status(500).json({ message: err });
-    }
 };
 
 //delete a task
