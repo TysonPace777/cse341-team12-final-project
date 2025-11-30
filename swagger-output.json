@@ -137,7 +137,6 @@
           "404": { "description": "User not found or no changes made" },
           "500": { "description": "Internal Server Error" }
         }
-      }
       },
       "delete": {
         "description": "",
@@ -397,3 +396,4 @@
       }
     }
   }
+}
