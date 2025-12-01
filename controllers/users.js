@@ -1,3 +1,4 @@
+const { raw } = require('body-parser');
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
@@ -47,7 +48,12 @@ const deleteUser = async (req, res) => {
     const userId = new ObjectId(rawId);
     console.log('Deleting user with ID:', userId);
 
-    const response = await mongodb.getDatabase().db().collection('user').deleteOne({ _id: userId });
+    const response = await mongodb
+      .getDatabase()
+      .db()
+      .collection('user')
+    //.deleteOne({ _id: userId });
+      .deleteOne({ _id: rawId });
     console.log('Delete response:', response);
 
     if (response.deletedCount > 0) {
