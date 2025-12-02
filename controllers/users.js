@@ -2,6 +2,24 @@ const { raw } = require('body-parser');
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
+// Gets all users
+const getAll = async (req, res) => {
+  try {
+    const users = await mongodb
+      .getDatabase()
+      .db()
+      .collection('user') 
+      .find()
+      .toArray();
+
+    return res.status(200).json(users);
+  } catch (err) {
+    console.error('getAll error:', err);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
 //gets one user
 const getSingle = async (req, res) => {
   try {
@@ -32,6 +50,41 @@ const getSingle = async (req, res) => {
   } catch (err) {
     console.error('getSingle error:', err);
     return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+const createUser = async (req, res) => {
+  try {
+    const { firstName, lastName, location, age, language, birthMonth, birthYear } = req.body;
+
+    const user = { firstName, lastName, location, age, language, birthMonth, birthYear };
+
+    const response = await mongodb
+      .getDatabase()
+      .db().collection("user")
+      .insertOne(user);
+    res
+      .status(201)
+      .json({
+        message: "User created successfully",
+        UserId: response.insertedId,
+      });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+const updateUser = async (req, res) => {
+  try {
+    const UserId = new ObjectId(req.params.id);
+    const { firstName, lastName, location, age, language, birthMonth, birthYear } = req.body;
+    const updatedUser = { firstName, lastName, location, age, language, birthMonth, birthYear };
+    const response = await mongodb.getDatabase().db().collection('user').updateOne({ _id: UserId }, { $set: updatedUser });
+
+    if (response.modifiedCount > 0) return res.status(200).json({ message: 'User updated' });
+    res.status(404).json({ error: 'User not found or no changes made' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -69,6 +122,9 @@ const deleteUser = async (req, res) => {
 
 
 module.exports = {
-    getSingle,
-    deleteUser
+  getAll,
+  getSingle,
+  createUser,
+  updateUser,
+  deleteUser
 };

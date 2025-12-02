@@ -4,8 +4,12 @@ const utilities = require('../utilities/index');
 
 const userController = require('../controllers/users');
 
+router.get('/', utilities.handleErrors(userController.getAll));
 router.get('/:id', utilities.handleErrors(userController.getSingle));
 
+router.post('/', utilities.handleErrors(userController.createUser));
+
+router.put('/:id', utilities.handleErrors(userController.updateUser));
 
 router.delete('/:id', utilities.handleErrors(userController.deleteUser));
 
