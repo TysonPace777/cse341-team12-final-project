@@ -3,14 +3,14 @@ const router = express.Router();
 const utilities = require("../utilities/index");
 
 const eventController = require("../controllers/events");
-const validateEvent = require('../validation/events');
+const { eventValidationRules, validateEvent } = require('../validation/events');
 
 router.get("/", utilities.handleErrors(eventController.getAll));
 
 router.get("/:id", utilities.handleErrors(eventController.getSingle));
 
-router.post("/", validateEvent, utilities.handleErrors(eventController.createEvent));
-router.put("/:id", validateEvent, utilities.handleErrors(eventController.updateEvent));
+router.post("/", eventValidationRules, validateEvent, utilities.handleErrors(eventController.createEvent));
+router.put("/:id", eventValidationRules, validateEvent, utilities.handleErrors(eventController.updateEvent));
 
 router.delete("/:id", utilities.handleErrors(eventController.deleteEvent));
 
