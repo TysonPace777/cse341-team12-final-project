@@ -55,9 +55,9 @@ const getSingle = async (req, res) => {
 
 const createEvent = async (req, res) => {
   try {
-    const { what, time } = req.body;
+    const { eventName, location, date } = req.body;
 
-    const event = { what, time };
+    const event = { eventName, location, date };
 
     const response = await mongodb
       .getDatabase()
@@ -83,8 +83,8 @@ const updateEvent = async (req, res) => {
       return res.status(400).json({ error: "Invalid Event ID" });
     }
     const eventId = new ObjectId(rawId);
-    const { what, time } = req.body;
-    const updatedGoal = { what, time };
+    const { eventName, location, date } = req.body;
+    const updatedGoal = { eventName, location, date };
     const response = await mongodb
       .getDatabase()
       .db()
