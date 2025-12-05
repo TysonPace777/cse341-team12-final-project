@@ -67,7 +67,7 @@ async(accessToken, refreshToken, profile, done) => {
         newUser._id = result.insertedId;
         return done(null, newUser);
       }
-    return done(null, newUser);
+    return done(null, user);
   } 
 ));
 
