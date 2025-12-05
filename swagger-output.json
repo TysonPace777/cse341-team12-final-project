@@ -245,21 +245,10 @@
       "get": {
         "description": "Get all events",
         "responses": { "default": { "description": "" } }
-      }
-    },
-
-    "/events/{id}": {
-      "get": {
-        "description": "Get event by id",
-        "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" }
-        ],
-        "responses": { "default": { "description": "" } }
       },
       "post": {
         "description": "Create an event",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
             "in": "body",
             "name": "body",
@@ -273,6 +262,16 @@
               }
             }
           }
+        ],
+        "responses": { "default": { "description": "" } }
+      }
+    },
+
+    "/events/{id}": {
+      "get": {
+        "description": "Get event by id",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": { "default": { "description": "" } }
       },
