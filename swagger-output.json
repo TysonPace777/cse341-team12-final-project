@@ -43,7 +43,7 @@
         "responses": { "default": { "description": "" } }
       }
     },
-    "/user/": {
+    "/users/": {
       "get": {
         "description": "Get all users",
         "responses": { "default": { "description": "" } }
@@ -73,7 +73,7 @@
       }
     },
 
-    "/user/{id}": {
+    "/users/{id}": {
       "get": {
         "description": "Get a user by id",
         "parameters": [
