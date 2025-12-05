@@ -4,14 +4,14 @@ const utilities = require("../utilities/index");
 const {isAuthenticated} = require('../middleware/auth')
 
 const taskController = require("../controllers/tasks");
-const validateTask = require('../validation/tasks');
+const { taskValidationRules, validateTask } = require('../validation/tasks');
 
 router.get("/:id", utilities.handleErrors(taskController.getSingle));
 router.get("/", utilities.handleErrors(taskController.getAll));
 
-router.post("/", validateTask, isAuthenticated, utilities.handleErrors(taskController.createTask));
+router.post("/", taskValidationRules, validateTask, isAuthenticated, utilities.handleErrors(taskController.createTask));
 
-router.put("/:id", validateTask, isAuthenticated, utilities.handleErrors(taskController.updateTask));
+router.put("/:id", taskValidationRules, validateTask, isAuthenticated, utilities.handleErrors(taskController.updateTask));
 
 router.delete("/:id", isAuthenticated, utilities.handleErrors(taskController.deleteTask));
 

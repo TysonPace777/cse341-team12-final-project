@@ -1,33 +1,19 @@
-const { body } = require("express-validator");
-
-const validateUser = [
-  body("firstName")
-    .notEmpty().withMessage("firstName is required.")
-    .isString().withMessage("firstName must be a string."),
-
-  body("lastName")
-    .notEmpty().withMessage("lastName is required.")
-    .isString().withMessage("lastName must be a string."),
-
-  body("location")
-    .notEmpty().withMessage("location is required.")
-    .isString().withMessage("location must be a string."),
-
-  body("age")
-    .notEmpty().withMessage("age is required.")
-    .isNumeric().withMessage("age must be a number."),
-
-  body("language")
-    .notEmpty().withMessage("language is required.")
-    .isString().withMessage("language must be a string."),
-
-  body("birthMonth")
-    .notEmpty().withMessage("birthMonth is required.")
-    .isNumeric().withMessage("birthMonth must be a number."),
-
-  body("birthYear")
-    .notEmpty().withMessage("birthYear is required.")
-    .isNumeric().withMessage("birthYear must be a number.")
+const userValidationRules = [
+  body("firstName").isString().notEmpty().withMessage("firstName must be a string and not empty"),
+  body("lastName").isString().notEmpty().withMessage("lastName must be a string and not empty"),
+  body("location").isString().notEmpty().withMessage("location must be a string and not empty"),
+  body("age").isInt().withMessage("age must be a number"),
+  body("language").isString().notEmpty().withMessage("language must be a string and not empty"),
+  body("birthMonth").isInt({ min: 1, max: 12 }).withMessage("birthMonth must be a number between 1 and 12"),
+  body("birthYear").isInt().withMessage("birthYear must be a number")
 ];
 
-module.exports = validateUser;
+function validateUser(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+}
+
+module.exports = { userValidationRules, validateUser };

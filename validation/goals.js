@@ -1,13 +1,16 @@
-const { body } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 
-const validateGoal = [
-  body("what")
-    .notEmpty().withMessage("what is required.")
-    .isString().withMessage("what must be a string."),
-
-  body("time")
-    .notEmpty().withMessage("time is required.")
-    .isString().withMessage("time must be a string.")
+const goalValidationRules = [
+  body("what").isString().notEmpty().withMessage("what must be a string and not empty"),
+  body("time").isString().notEmpty().withMessage("time must be a string and not empty")
 ];
 
-module.exports = validateGoal;
+function validateGoal(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+}
+
+module.exports = { goalValidationRules, validateGoal };

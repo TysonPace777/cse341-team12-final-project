@@ -1,17 +1,17 @@
-const { body } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 
-const validateEvent = [
-  body("eventName")
-    .notEmpty().withMessage("eventName is required.")
-    .isString().withMessage("eventName must be a string."),
-
-  body("location")
-    .notEmpty().withMessage("location is required.")
-    .isString().withMessage("location must be a string."),
-
-  body("date")
-    .notEmpty().withMessage("date is required.")
-    .isString().withMessage("date must be a string.")
+const eventValidationRules = [
+  body("eventName").isString().notEmpty().withMessage("eventName must be a string and not empty"),
+  body("location").isString().notEmpty().withMessage("location must be a string and not empty"),
+  body("date").isString().notEmpty().withMessage("date must be a string and not empty")
 ];
 
-module.exports = validateEvent;
+function validateEvent(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+}
+
+module.exports = { eventValidationRules, validateEvent }
