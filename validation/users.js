@@ -1,3 +1,5 @@
+const { body, validationResult } = require("express-validator");
+
 const userValidationRules = [
   body("firstName").isString().notEmpty().withMessage("firstName must be a string and not empty"),
   body("lastName").isString().notEmpty().withMessage("lastName must be a string and not empty"),
