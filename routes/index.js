@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 router.use('/users', require("./users"));
 router.use('/tasks', require("./tasks"));
 router.use('/goals', require("./goals"));
+router.use('/events', require("./events"));
 
 //Auth Redirect to Github 
 router.get('/login', passport.authenticate('github'), (req, res) => {});
