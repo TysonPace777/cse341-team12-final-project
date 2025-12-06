@@ -1,4 +1,33 @@
 ### GetAll
+http://localhost:5000/users 
+
+### Get user by Id
+http://localhost:5000/users/69338fddd7564a9cac3c5954
+
+### Create user
+POST http://localhost:5000/users
+content-type: application/json
+
+{
+  "username": "Archbee",
+  "displayName": "Deborah",
+  "profileUrl": "https://github.com/Archbee"
+}
+
+### Put user by Id/username
+PUT http://localhost:5000/users/Archbee HTTP/1.1 
+content-type: application/json
+
+{
+  "username": "Beeangel",
+  "displayName": "Okon",
+  "profileUrl": "https://github.com/Archbee"
+}
+
+### Delete task by id
+DELETE http://localhost:5000/users/69338fddd7564a9cac3c5954 HTTP/1.1 
+
+### GetAll
 http://localhost:5000/tasks 
 
 ### Get task by Id
@@ -9,7 +38,6 @@ POST http://localhost:5000/tasks
 content-type: application/json
 
 {
-
   "what": "18 mile run",
   "amount": "1",
   "reps": "1",
@@ -61,5 +89,12 @@ content-type: application/json
 
 ### Delete goal by id
 DELETE http://localhost:5000/goals/692ad524b5cf10794ef69fe0 HTTP/1.1
+
+//Events CRUD Request
+### GetAll
+http://localhost:5000/events 
+
+### Get event by Id
+http://localhost:5000/events/692ad524b5cf10794ef69fe0
 
 
