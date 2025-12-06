@@ -89,12 +89,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/', require('./routes'));
 
-mongodb.initDb((err) => {
+// mongodb.initDb((err) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         app.listen(port, () =>
+//             console.log(`Database is listening and Running on port ${port}`)
+//         );
+//     }
+// });
+
+if (process.env.NODE_ENV !== "test") {
+  mongodb.initDb((err) => {
     if (err) {
-        console.log(err);
+      console.log(err);
     } else {
-        app.listen(port, () =>
-            console.log(`Database is listening and Running on port ${port}`)
-        );
+      app.listen(port, () =>
+        console.log(`Database is listening and Running on port ${port}`)
+      );
     }
-});
+  });
+}
+
+module.exports = app;
