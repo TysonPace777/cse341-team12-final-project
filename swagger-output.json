@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Team 12 API",
-    "description": "planner api",
+    "description": "Planner API",
     "version": "1.0.0"
   },
   "host": "cse341-team12-final-project.onrender.com",
@@ -21,36 +21,28 @@
     "/login": {
       "get": {
         "description": "Login via OAuth",
-        "responses": {
-          "200": { "description": "Success" }
-        }
+        "responses": { "200": { "description": "Success" } }
       }
     },
 
     "/github/callback": {
       "get": {
         "description": "GitHub OAuth callback",
-        "responses": {
-          "200": { "description": "Success" }
-        }
+        "responses": { "200": { "description": "Success" } }
       }
     },
 
     "/logout": {
       "get": {
         "description": "Logout user",
-        "responses": {
-          "200": { "description": "Success" }
-        }
+        "responses": { "200": { "description": "Success" } }
       }
     },
 
     "/api-docs": {
       "get": {
         "description": "Swagger docs",
-        "responses": {
-          "200": { "description": "Success" }
-        }
+        "responses": { "200": { "description": "Success" } }
       }
     },
 
@@ -58,7 +50,13 @@
       "get": {
         "description": "Get all users",
         "responses": {
-          "200": { "description": "Success" }
+          "200": {
+            "description": "A list of users",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/User" }
+            }
+          }
         }
       },
       "post": {
@@ -68,23 +66,10 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": { "type": "string" },
-                "lastName": { "type": "string" },
-                "location": { "type": "string" },
-                "age": { "type": "number" },
-                "language": { "type": "string" },
-                "birthMonth": { "type": "number" },
-                "birthYear": { "type": "number" }
-              }
-            }
+            "schema": { "$ref": "#/definitions/User" }
           }
         ],
-        "responses": {
-          "401": { "description": "Unauthorized" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       }
     },
 
@@ -95,7 +80,10 @@
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": { "description": "Success" },
+          "200": {
+            "description": "A single user",
+            "schema": { "$ref": "#/definitions/User" }
+          },
           "404": { "description": "Not found" }
         }
       },
@@ -107,32 +95,17 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": { "type": "string" },
-                "lastName": { "type": "string" },
-                "location": { "type": "string" },
-                "age": { "type": "number" },
-                "language": { "type": "string" },
-                "birthMonth": { "type": "number" },
-                "birthYear": { "type": "number" }
-              }
-            }
+            "schema": { "$ref": "#/definitions/User" }
           }
         ],
-        "responses": {
-          "401": { "description": "Unauthorized" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       },
       "delete": {
         "description": "Delete a user",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
-        "responses": {
-          "401": { "description": "Unauthorized" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       }
     },
 
@@ -140,7 +113,13 @@
       "get": {
         "description": "Get all tasks",
         "responses": {
-          "200": { "description": "Success" }
+          "200": {
+            "description": "List of tasks",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Task" }
+            }
+          }
         }
       },
       "post": {
@@ -150,22 +129,10 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "what": { "type": "string" },
-                "amount": { "type": "number" },
-                "reps": { "type": "number" },
-                "where": { "type": "string" },
-                "day": { "type": "string" },
-                "time": { "type": "string" }
-              }
-            }
+            "schema": { "$ref": "#/definitions/Task" }
           }
         ],
-        "responses": {
-          "401": { "description": "Unauthorized" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       }
     },
 
@@ -176,7 +143,10 @@
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": { "description": "Success" },
+          "200": {
+            "description": "A single task",
+            "schema": { "$ref": "#/definitions/Task" }
+          },
           "404": { "description": "Not found" }
         }
       },
@@ -188,31 +158,17 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "what": { "type": "string" },
-                "amount": { "type": "number" },
-                "reps": { "type": "number" },
-                "where": { "type": "string" },
-                "day": { "type": "string" },
-                "time": { "type": "string" }
-              }
-            }
+            "schema": { "$ref": "#/definitions/Task" }
           }
         ],
-        "responses": {
-          "401": { "description": "Unauthorized" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       },
       "delete": {
         "description": "Delete a task",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
-        "responses": {
-          "401": { "description": "Unauthorized" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       }
     },
 
@@ -220,7 +176,13 @@
       "get": {
         "description": "Get all goals",
         "responses": {
-          "200": { "description": "Success" }
+          "200": {
+            "description": "List of goals",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Goal" }
+            }
+          }
         }
       },
       "post": {
@@ -230,29 +192,24 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "what": { "type": "string" },
-                "time": { "type": "string" }
-              }
-            }
+            "schema": { "$ref": "#/definitions/Goal" }
           }
         ],
-        "responses": {
-          "200": { "description": "Success" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       }
     },
 
     "/goals/{id}": {
       "get": {
-        "description": "Get goal by id",
+        "description": "Get a goal by id",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": { "description": "Success" },
+          "200": {
+            "description": "A single goal",
+            "schema": { "$ref": "#/definitions/Goal" }
+          },
           "404": { "description": "Not found" }
         }
       },
@@ -264,27 +221,17 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "what": { "type": "string" },
-                "time": { "type": "string" }
-              }
-            }
+            "schema": { "$ref": "#/definitions/Goal" }
           }
         ],
-        "responses": {
-          "200": { "description": "Success" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       },
       "delete": {
         "description": "Delete a goal",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
-        "responses": {
-          "200": { "description": "Success" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       }
     },
 
@@ -292,7 +239,13 @@
       "get": {
         "description": "Get all events",
         "responses": {
-          "200": { "description": "Success" }
+          "200": {
+            "description": "List of events",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Event" }
+            }
+          }
         }
       },
       "post": {
@@ -302,30 +255,24 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "eventName": { "type": "string" },
-                "location": { "type": "string" },
-                "date": { "type": "string" }
-              }
-            }
+            "schema": { "$ref": "#/definitions/Event" }
           }
         ],
-        "responses": {
-          "200": { "description": "Success" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       }
     },
 
     "/events/{id}": {
       "get": {
-        "description": "Get event by id",
+        "description": "Get an event by id",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": { "description": "Success" },
+          "200": {
+            "description": "A single event",
+            "schema": { "$ref": "#/definitions/Event" }
+          },
           "404": { "description": "Not found" }
         }
       },
@@ -337,28 +284,70 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "eventName": { "type": "string" },
-                "location": { "type": "string" },
-                "date": { "type": "string" }
-              }
-            }
+            "schema": { "$ref": "#/definitions/Event" }
           }
         ],
-        "responses": {
-          "200": { "description": "Success" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
       },
       "delete": {
         "description": "Delete an event",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
-        "responses": {
-          "200": { "description": "Success" }
-        }
+        "responses": { "401": { "description": "Unauthorized" } }
+      }
+    }
+  },
+
+  "definitions": {
+    "MongoId": {
+      "type": "string",
+      "example": "65dfc143c035f3b848d9b921"
+    },
+
+    "User": {
+      "type": "object",
+      "properties": {
+        "_id": { "$ref": "#/definitions/MongoId" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "location": { "type": "string" },
+        "age": { "type": "number" },
+        "language": { "type": "string" },
+        "birthMonth": { "type": "number" },
+        "birthYear": { "type": "number" }
+      }
+    },
+
+    "Task": {
+      "type": "object",
+      "properties": {
+        "_id": { "$ref": "#/definitions/MongoId" },
+        "what": { "type": "string" },
+        "amount": { "type": "number" },
+        "reps": { "type": "number" },
+        "where": { "type": "string" },
+        "day": { "type": "string" },
+        "time": { "type": "string" }
+      }
+    },
+
+    "Goal": {
+      "type": "object",
+      "properties": {
+        "_id": { "$ref": "#/definitions/MongoId" },
+        "what": { "type": "string" },
+        "time": { "type": "string" }
+      }
+    },
+
+    "Event": {
+      "type": "object",
+      "properties": {
+        "_id": { "$ref": "#/definitions/MongoId" },
+        "eventName": { "type": "string" },
+        "location": { "type": "string" },
+        "date": { "type": "string" }
       }
     }
   }
