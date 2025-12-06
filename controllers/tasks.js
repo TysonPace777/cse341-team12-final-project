@@ -54,15 +54,15 @@ const getSingle = async (req, res) => {
 
 //post a new task
 const createTask = async (req, res) => {
-  //create task object
-  const newTask = {
-    what: req.body.what,
-    amount: req.body.amount,
-    reps: req.body.reps,
-    where: req.body.where,
-    day: req.body.day,
-    time: req.body.time,
-  };
+    //create task object
+    const newTask = {
+        what: req.body.what,
+        amount: req.body.amount,
+        reps: req.body.reps,
+        where: req.body.where,
+        day: req.body.day,
+        time: req.body.time,
+    };
 
     //insert the task
     try {
@@ -86,17 +86,22 @@ const createTask = async (req, res) => {
 
 // Update Task
 const updateTask = async (req, res) => {
-  try {
-    const taskId = new ObjectId(req.params.id);
-    const { what, amount, reps, where, day, time } = req.body;
-    const updatedTask = { what, amount, reps, where, day, time };
-    const response = await mongodb.getDatabase().db().collection('tasks').updateOne({ _id: taskId }, { $set: updatedTask });
+    try {
+        const taskId = new ObjectId(req.params.id);
+        const { what, amount, reps, where, day, time } = req.body;
+        const updatedTask = { what, amount, reps, where, day, time };
+        const response = await mongodb
+            .getDatabase()
+            .db()
+            .collection("tasks")
+            .updateOne({ _id: taskId }, { $set: updatedTask });
 
-    if (response.modifiedCount > 0) return res.status(200).json({ message: 'Task updated' });
-    res.status(404).json({ error: 'Task not found or no changes made' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+        if (response.modifiedCount > 0)
+            return res.status(200).json({ message: "Task updated" });
+        res.status(404).json({ error: "Task not found or no changes made" });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 };
 
 //delete a task
@@ -127,7 +132,7 @@ const deleteTask = async (req, res) => {
 module.exports = {
     getAll,
     getSingle,
-    deleteTask, 
-    createTask, 
-    updateTask
+    deleteTask,
+    createTask,
+    updateTask,
 };
