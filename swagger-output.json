@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Team 12 API",
-    "description": "Planner API",
+    "description": "planner api",
     "version": "1.0.0"
   },
   "host": "cse341-team12-final-project.onrender.com",
@@ -11,53 +11,42 @@
   "paths": {
     "/": {
       "get": {
-        "description": "Root endpoint",
-        "responses": {
-          "200": { "description": "OK" }
-        }
+        "description": "",
+        "responses": { "200": { "description": "OK" } }
       }
     },
 
     "/login": {
       "get": {
-        "description": "Login via OAuth",
-        "responses": { "200": { "description": "Success" } }
+        "description": "",
+        "responses": { "default": { "description": "" } }
       }
     },
 
     "/github/callback": {
       "get": {
-        "description": "GitHub OAuth callback",
-        "responses": { "200": { "description": "Success" } }
+        "description": "",
+        "responses": { "default": { "description": "" } }
       }
     },
 
     "/logout": {
       "get": {
-        "description": "Logout user",
-        "responses": { "200": { "description": "Success" } }
+        "description": "",
+        "responses": { "default": { "description": "" } }
       }
     },
 
     "/api-docs": {
       "get": {
-        "description": "Swagger docs",
-        "responses": { "200": { "description": "Success" } }
+        "description": "",
+        "responses": { "default": { "description": "" } }
       }
     },
-
     "/users/": {
       "get": {
         "description": "Get all users",
-        "responses": {
-          "200": {
-            "description": "A list of users",
-            "schema": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/User" }
-            }
-          }
-        }
+        "responses": { "default": { "description": "" } }
       },
       "post": {
         "description": "Create a user",
@@ -66,7 +55,18 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": { "$ref": "#/definitions/User" }
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": { "type": "string" },
+                "lastName": { "type": "string" },
+                "location": { "type": "string" },
+                "age": { "type": "number" },
+                "language": { "type": "string" },
+                "birthMonth": { "type": "number" },
+                "birthYear": { "type": "number" }
+              }
+            }
           }
         ],
         "responses": { "401": { "description": "Unauthorized" } }
@@ -79,13 +79,7 @@
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
-        "responses": {
-          "200": {
-            "description": "A single user",
-            "schema": { "$ref": "#/definitions/User" }
-          },
-          "404": { "description": "Not found" }
-        }
+        "responses": { "default": { "description": "" } }
       },
       "put": {
         "description": "Update a user",
@@ -95,7 +89,18 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": { "$ref": "#/definitions/User" }
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": { "type": "string" },
+                "lastName": { "type": "string" },
+                "location": { "type": "string" },
+                "age": { "type": "number" },
+                "language": { "type": "string" },
+                "birthMonth": { "type": "number" },
+                "birthYear": { "type": "number" }
+              }
+            }
           }
         ],
         "responses": { "401": { "description": "Unauthorized" } }
@@ -108,19 +113,10 @@
         "responses": { "401": { "description": "Unauthorized" } }
       }
     },
-
     "/tasks/": {
       "get": {
         "description": "Get all tasks",
-        "responses": {
-          "200": {
-            "description": "List of tasks",
-            "schema": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/Task" }
-            }
-          }
-        }
+        "responses": { "default": { "description": "" } }
       },
       "post": {
         "description": "Create a task",
@@ -129,7 +125,17 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": { "$ref": "#/definitions/Task" }
+            "schema": {
+              "type": "object",
+              "properties": {
+                "what": { "type": "string" },
+                "amount": { "type": "number" },
+                "reps": { "type": "number" },
+                "where": { "type": "string" },
+                "day": { "type": "string" },
+                "time": { "type": "string" }
+              }
+            }
           }
         ],
         "responses": { "401": { "description": "Unauthorized" } }
@@ -138,52 +144,47 @@
 
     "/tasks/{id}": {
       "get": {
-        "description": "Get a task by id",
+        "description": "",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
-        "responses": {
-          "200": {
-            "description": "A single task",
-            "schema": { "$ref": "#/definitions/Task" }
-          },
-          "404": { "description": "Not found" }
-        }
+        "responses": { "default": { "description": "" } }
       },
       "put": {
-        "description": "Update a task",
+        "description": "",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" },
           {
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": { "$ref": "#/definitions/Task" }
+            "schema": {
+              "type": "object",
+              "properties": {
+                "what": { "type": "string" },
+                "amount": { "type": "number" },
+                "reps": { "type": "number" },
+                "where": { "type": "string" },
+                "day": { "type": "string" },
+                "time": { "type": "string" }
+              }
+            }
           }
         ],
         "responses": { "401": { "description": "Unauthorized" } }
       },
       "delete": {
-        "description": "Delete a task",
+        "description": "",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": { "401": { "description": "Unauthorized" } }
       }
     },
-
     "/goals/": {
       "get": {
         "description": "Get all goals",
-        "responses": {
-          "200": {
-            "description": "List of goals",
-            "schema": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/Goal" }
-            }
-          }
-        }
+        "responses": { "default": { "description": "" } }
       },
       "post": {
         "description": "Create a goal",
@@ -192,61 +193,58 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": { "$ref": "#/definitions/Goal" }
+            "schema": {
+              "type": "object",
+              "properties": {
+                "what": { "type": "string" },
+                "time": { "type": "string" }
+              }
+            }
           }
         ],
-        "responses": { "401": { "description": "Unauthorized" } }
+        "responses": { "default": { "description": "" } }
       }
     },
 
     "/goals/{id}": {
       "get": {
-        "description": "Get a goal by id",
+        "description": "",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
-        "responses": {
-          "200": {
-            "description": "A single goal",
-            "schema": { "$ref": "#/definitions/Goal" }
-          },
-          "404": { "description": "Not found" }
-        }
+        "responses": { "default": { "description": "" } }
       },
       "put": {
-        "description": "Update a goal",
+        "description": "",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" },
           {
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": { "$ref": "#/definitions/Goal" }
+            "schema": {
+              "type": "object",
+              "properties": {
+                "what": { "type": "string" },
+                "time": { "type": "string" }
+              }
+            }
           }
         ],
-        "responses": { "401": { "description": "Unauthorized" } }
+        "responses": { "default": { "description": "" } }
       },
       "delete": {
-        "description": "Delete a goal",
+        "description": "",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
-        "responses": { "401": { "description": "Unauthorized" } }
+        "responses": { "default": { "description": "" } }
       }
     },
-
     "/events/": {
       "get": {
         "description": "Get all events",
-        "responses": {
-          "200": {
-            "description": "List of events",
-            "schema": {
-              "type": "array",
-              "items": { "$ref": "#/definitions/Event" }
-            }
-          }
-        }
+        "responses": { "default": { "description": "" } }
       },
       "post": {
         "description": "Create an event",
@@ -255,26 +253,27 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": { "$ref": "#/definitions/Event" }
+            "schema": {
+              "type": "object",
+              "properties": {
+                "eventName": { "type": "string" },
+                "location": { "type": "string" },
+                "date": { "type": "string" }
+              }
+            }
           }
         ],
-        "responses": { "401": { "description": "Unauthorized" } }
+        "responses": { "default": { "description": "" } }
       }
     },
 
     "/events/{id}": {
       "get": {
-        "description": "Get an event by id",
+        "description": "Get event by id",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
-        "responses": {
-          "200": {
-            "description": "A single event",
-            "schema": { "$ref": "#/definitions/Event" }
-          },
-          "404": { "description": "Not found" }
-        }
+        "responses": { "default": { "description": "" } }
       },
       "put": {
         "description": "Update an event",
@@ -284,70 +283,24 @@
             "in": "body",
             "name": "body",
             "required": true,
-            "schema": { "$ref": "#/definitions/Event" }
+            "schema": {
+              "type": "object",
+              "properties": {
+                "eventName": { "type": "string" },
+                "location": { "type": "string" },
+                "date": { "type": "string" }
+              }
+            }
           }
         ],
-        "responses": { "401": { "description": "Unauthorized" } }
+        "responses": { "default": { "description": "" } }
       },
       "delete": {
         "description": "Delete an event",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
-        "responses": { "401": { "description": "Unauthorized" } }
-      }
-    }
-  },
-
-  "definitions": {
-    "MongoId": {
-      "type": "string",
-      "example": "65dfc143c035f3b848d9b921"
-    },
-
-    "User": {
-      "type": "object",
-      "properties": {
-        "_id": { "$ref": "#/definitions/MongoId" },
-        "firstName": { "type": "string" },
-        "lastName": { "type": "string" },
-        "location": { "type": "string" },
-        "age": { "type": "number" },
-        "language": { "type": "string" },
-        "birthMonth": { "type": "number" },
-        "birthYear": { "type": "number" }
-      }
-    },
-
-    "Task": {
-      "type": "object",
-      "properties": {
-        "_id": { "$ref": "#/definitions/MongoId" },
-        "what": { "type": "string" },
-        "amount": { "type": "number" },
-        "reps": { "type": "number" },
-        "where": { "type": "string" },
-        "day": { "type": "string" },
-        "time": { "type": "string" }
-      }
-    },
-
-    "Goal": {
-      "type": "object",
-      "properties": {
-        "_id": { "$ref": "#/definitions/MongoId" },
-        "what": { "type": "string" },
-        "time": { "type": "string" }
-      }
-    },
-
-    "Event": {
-      "type": "object",
-      "properties": {
-        "_id": { "$ref": "#/definitions/MongoId" },
-        "eventName": { "type": "string" },
-        "location": { "type": "string" },
-        "date": { "type": "string" }
+        "responses": { "default": { "description": "" } }
       }
     }
   }
