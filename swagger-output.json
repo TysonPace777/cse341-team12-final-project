@@ -7,331 +7,357 @@
   },
   "host": "cse341-team12-final-project.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["https"],
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "description": "Root endpoint",
         "responses": {
-          "200": {
-            "description": "OK"
-          }
+          "200": { "description": "OK" }
         }
       }
     },
+
     "/login": {
       "get": {
-        "description": "",
+        "description": "Login via OAuth",
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" }
         }
       }
     },
+
     "/github/callback": {
       "get": {
-        "description": "",
+        "description": "GitHub OAuth callback",
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" }
         }
       }
     },
+
     "/logout": {
       "get": {
-        "description": "",
+        "description": "Logout user",
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" }
         }
       }
     },
+
+    "/api-docs": {
+      "get": {
+        "description": "Swagger docs",
+        "responses": {
+          "200": { "description": "Success" }
+        }
+      }
+    },
+
     "/users/": {
       "get": {
-        "description": "",
+        "description": "Get all users",
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" }
         }
       },
       "post": {
-        "description": "",
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
+        "description": "Create a user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": { "type": "string" },
+                "lastName": { "type": "string" },
+                "location": { "type": "string" },
+                "age": { "type": "number" },
+                "language": { "type": "string" },
+                "birthMonth": { "type": "number" },
+                "birthYear": { "type": "number" }
+              }
+            }
           }
+        ],
+        "responses": {
+          "401": { "description": "Unauthorized" }
         }
       }
     },
+
     "/users/{id}": {
       "get": {
-        "description": "",
+        "description": "Get a user by id",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" },
+          "404": { "description": "Not found" }
         }
       },
       "put": {
-        "description": "",
+        "description": "Update a user",
         "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
-            "name": "id",
-            "in": "path",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": { "type": "string" },
+                "lastName": { "type": "string" },
+                "location": { "type": "string" },
+                "age": { "type": "number" },
+                "language": { "type": "string" },
+                "birthMonth": { "type": "number" },
+                "birthYear": { "type": "number" }
+              }
+            }
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
+          "401": { "description": "Unauthorized" }
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete a user",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "401": {
-            "description": "Unauthorized"
-          }
+          "401": { "description": "Unauthorized" }
         }
       }
     },
-    "/tasks/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
+
     "/tasks/": {
       "get": {
-        "description": "",
+        "description": "Get all tasks",
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" }
         }
       },
       "post": {
-        "description": "",
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
+        "description": "Create a task",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "what": { "type": "string" },
+                "amount": { "type": "number" },
+                "reps": { "type": "number" },
+                "where": { "type": "string" },
+                "day": { "type": "string" },
+                "time": { "type": "string" }
+              }
+            }
           }
+        ],
+        "responses": {
+          "401": { "description": "Unauthorized" }
         }
       }
     },
+
+    "/tasks/{id}": {
+      "get": {
+        "description": "Get a task by id",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": { "description": "Success" },
+          "404": { "description": "Not found" }
+        }
+      },
+      "put": {
+        "description": "Update a task",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "what": { "type": "string" },
+                "amount": { "type": "number" },
+                "reps": { "type": "number" },
+                "where": { "type": "string" },
+                "day": { "type": "string" },
+                "time": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "401": { "description": "Unauthorized" }
+        }
+      },
+      "delete": {
+        "description": "Delete a task",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+
     "/goals/": {
       "get": {
-        "description": "",
+        "description": "Get all goals",
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" }
         }
       },
       "post": {
-        "description": "",
-        "responses": {
-          "400": {
-            "description": "Bad Request"
+        "description": "Create a goal",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "what": { "type": "string" },
+                "time": { "type": "string" }
+              }
+            }
           }
+        ],
+        "responses": {
+          "200": { "description": "Success" }
         }
       }
     },
+
     "/goals/{id}": {
       "get": {
-        "description": "",
+        "description": "Get goal by id",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" },
+          "404": { "description": "Not found" }
         }
       },
       "put": {
-        "description": "",
+        "description": "Update a goal",
         "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
-            "name": "id",
-            "in": "path",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "object",
+              "properties": {
+                "what": { "type": "string" },
+                "time": { "type": "string" }
+              }
+            }
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
+          "200": { "description": "Success" }
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete a goal",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" }
         }
       }
     },
+
     "/events/": {
       "get": {
-        "description": "",
+        "description": "Get all events",
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" }
         }
       },
       "post": {
-        "description": "",
-        "responses": {
-          "400": {
-            "description": "Bad Request"
+        "description": "Create an event",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "eventName": { "type": "string" },
+                "location": { "type": "string" },
+                "date": { "type": "string" }
+              }
+            }
           }
+        ],
+        "responses": {
+          "200": { "description": "Success" }
         }
       }
     },
+
     "/events/{id}": {
       "get": {
-        "description": "",
+        "description": "Get event by id",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" },
+          "404": { "description": "Not found" }
         }
       },
       "put": {
-        "description": "",
+        "description": "Update an event",
         "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
-            "name": "id",
-            "in": "path",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "object",
+              "properties": {
+                "eventName": { "type": "string" },
+                "location": { "type": "string" },
+                "date": { "type": "string" }
+              }
+            }
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
+          "200": { "description": "Success" }
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete an event",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Success" }
         }
       }
     }
