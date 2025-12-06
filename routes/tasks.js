@@ -9,9 +9,9 @@ const { taskValidationRules, validateTask } = require('../validation/tasks');
 router.get("/:id", utilities.handleErrors(taskController.getSingle));
 router.get("/", utilities.handleErrors(taskController.getAll));
 
-router.post("/", taskValidationRules, validateTask, isAuthenticated, utilities.handleErrors(taskController.createTask));
+router.post("/", isAuthenticated, taskValidationRules, validateTask, utilities.handleErrors(taskController.createTask));
 
-router.put("/:id", taskValidationRules, validateTask, isAuthenticated, utilities.handleErrors(taskController.updateTask));
+router.put("/:id", isAuthenticated, taskValidationRules, validateTask, utilities.handleErrors(taskController.updateTask));
 
 router.delete("/:id", isAuthenticated, utilities.handleErrors(taskController.deleteTask));
 
