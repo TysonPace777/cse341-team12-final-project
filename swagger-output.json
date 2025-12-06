@@ -5,7 +5,7 @@
     "description": "planner api",
     "version": "1.0.0"
   },
-  "host": "cse341-team12-final-project.onrender.com/",
+  "host": "cse341-team12-final-project.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
