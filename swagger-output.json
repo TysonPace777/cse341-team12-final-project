@@ -5,302 +5,334 @@
     "description": "planner api",
     "version": "1.0.0"
   },
-  "host": "cse341-team12-final-project.onrender.com",
+  "host": "localhost:5000",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": [
+    "http"
+  ],
   "paths": {
     "/": {
       "get": {
         "description": "",
-        "responses": { "200": { "description": "OK" } }
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
-
     "/login": {
       "get": {
         "description": "",
-        "responses": { "default": { "description": "" } }
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
-
     "/github/callback": {
       "get": {
         "description": "",
-        "responses": { "default": { "description": "" } }
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
-
     "/logout": {
       "get": {
         "description": "",
-        "responses": { "default": { "description": "" } }
-      }
-    },
-
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": { "default": { "description": "" } }
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/users/": {
       "get": {
-        "description": "Get all users",
-        "responses": { "default": { "description": "" } }
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       },
       "post": {
-        "description": "Create a user",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": { "type": "string" },
-                "lastName": { "type": "string" },
-                "location": { "type": "string" },
-                "age": { "type": "number" },
-                "language": { "type": "string" },
-                "birthMonth": { "type": "number" },
-                "birthYear": { "type": "number" }
-              }
-            }
+        "description": "",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
-        ],
-        "responses": { "401": { "description": "Unauthorized" } }
+        }
       }
     },
-
     "/users/{id}": {
       "get": {
-        "description": "Get a user by id",
+        "description": "",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
-        "responses": { "default": { "description": "" } }
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       },
       "put": {
-        "description": "Update a user",
+        "description": "",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
-            "in": "body",
-            "name": "body",
+            "name": "id",
+            "in": "path",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": { "type": "string" },
-                "lastName": { "type": "string" },
-                "location": { "type": "string" },
-                "age": { "type": "number" },
-                "language": { "type": "string" },
-                "birthMonth": { "type": "number" },
-                "birthYear": { "type": "number" }
-              }
-            }
+            "type": "string"
           }
         ],
-        "responses": { "401": { "description": "Unauthorized" } }
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       },
       "delete": {
-        "description": "Delete a user",
-        "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" }
-        ],
-        "responses": { "401": { "description": "Unauthorized" } }
-      }
-    },
-    "/tasks/": {
-      "get": {
-        "description": "Get all tasks",
-        "responses": { "default": { "description": "" } }
-      },
-      "post": {
-        "description": "Create a task",
+        "description": "",
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
+            "name": "id",
+            "in": "path",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "what": { "type": "string" },
-                "amount": { "type": "number" },
-                "reps": { "type": "number" },
-                "where": { "type": "string" },
-                "day": { "type": "string" },
-                "time": { "type": "string" }
-              }
-            }
+            "type": "string"
           }
         ],
-        "responses": { "401": { "description": "Unauthorized" } }
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
-
     "/tasks/{id}": {
       "get": {
         "description": "",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
-        "responses": { "default": { "description": "" } }
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       },
       "put": {
         "description": "",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
-            "in": "body",
-            "name": "body",
+            "name": "id",
+            "in": "path",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "what": { "type": "string" },
-                "amount": { "type": "number" },
-                "reps": { "type": "number" },
-                "where": { "type": "string" },
-                "day": { "type": "string" },
-                "time": { "type": "string" }
-              }
-            }
+            "type": "string"
           }
         ],
-        "responses": { "401": { "description": "Unauthorized" } }
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       },
       "delete": {
         "description": "",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
-        "responses": { "401": { "description": "Unauthorized" } }
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/tasks/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/goals/": {
       "get": {
-        "description": "Get all goals",
-        "responses": { "default": { "description": "" } }
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       },
       "post": {
-        "description": "Create a goal",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "what": { "type": "string" },
-                "time": { "type": "string" }
-              }
-            }
+        "description": "",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
           }
-        ],
-        "responses": { "default": { "description": "" } }
+        }
       }
     },
-
     "/goals/{id}": {
       "get": {
         "description": "",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
-        "responses": { "default": { "description": "" } }
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       },
       "put": {
         "description": "",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
-            "in": "body",
-            "name": "body",
+            "name": "id",
+            "in": "path",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "what": { "type": "string" },
-                "time": { "type": "string" }
-              }
-            }
+            "type": "string"
           }
         ],
-        "responses": { "default": { "description": "" } }
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
       },
       "delete": {
         "description": "",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
-        "responses": { "default": { "description": "" } }
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/events/": {
       "get": {
-        "description": "Get all events",
-        "responses": { "default": { "description": "" } }
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       },
       "post": {
-        "description": "Create an event",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "eventName": { "type": "string" },
-                "location": { "type": "string" },
-                "date": { "type": "string" }
-              }
-            }
+        "description": "",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
           }
-        ],
-        "responses": { "default": { "description": "" } }
+        }
       }
     },
-
     "/events/{id}": {
       "get": {
-        "description": "Get event by id",
+        "description": "",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" }
-        ],
-        "responses": { "default": { "description": "" } }
-      },
-      "put": {
-        "description": "Update an event",
-        "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
-            "in": "body",
-            "name": "body",
+            "name": "id",
+            "in": "path",
             "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "eventName": { "type": "string" },
-                "location": { "type": "string" },
-                "date": { "type": "string" }
-              }
-            }
+            "type": "string"
           }
         ],
-        "responses": { "default": { "description": "" } }
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
       },
       "delete": {
-        "description": "Delete an event",
+        "description": "",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "type": "string" }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
-        "responses": { "default": { "description": "" } }
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     }
   }
