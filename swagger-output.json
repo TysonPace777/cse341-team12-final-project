@@ -58,13 +58,9 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": { "type": "string" },
-                "lastName": { "type": "string" },
-                "location": { "type": "string" },
-                "age": { "type": "number" },
-                "language": { "type": "string" },
-                "birthMonth": { "type": "number" },
-                "birthYear": { "type": "number" }
+                "username": { "type": "string"},
+                "displayName": { "type": "string"},
+                "profileUrl": { "type": "string"}
               }
             }
           }
@@ -92,13 +88,9 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": { "type": "string" },
-                "lastName": { "type": "string" },
-                "location": { "type": "string" },
-                "age": { "type": "number" },
-                "language": { "type": "string" },
-                "birthMonth": { "type": "number" },
-                "birthYear": { "type": "number" }
+                "username": { "type": "string"},
+                "displayName": { "type": "string"},
+                "profileUrl": { "type": "string"}
               }
             }
           }
