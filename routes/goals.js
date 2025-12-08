@@ -16,4 +16,5 @@ router.put("/:id", isAuthenticated, goalValidationRules, validateGoal, utilities
 
 router.delete("/:id", isAuthenticated, utilities.handleErrors(goalController.deleteGoal));
 
+
 module.exports = router;

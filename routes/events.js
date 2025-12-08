@@ -11,8 +11,9 @@ router.get("/", utilities.handleErrors(eventController.getAll));
 router.get("/:id", utilities.handleErrors(eventController.getSingle));
 
 router.post("/", isAuthenticated,eventValidationRules, validateEvent, utilities.handleErrors(eventController.createEvent));
-router.put("/:id", isAuthenticated,eventValidationRules, validateEvent, utilities.handleErrors(eventController.updateEvent));
 
-router.delete("/:id", utilities.handleErrors(eventController.deleteEvent));
+router.put("/:id", isAuthenticated, eventValidationRules, validateEvent, utilities.handleErrors(eventController.updateEvent));
+
+router.delete("/:id", isAuthenticated, utilities.handleErrors(eventController.deleteEvent));
 
 module.exports = router;
