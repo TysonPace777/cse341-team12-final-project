@@ -1,3 +1,4 @@
+const { raw } = require('body-parser');
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
@@ -114,6 +115,7 @@ const updateUser = async (req, res) => {
 
 // Delete User (by ID or username)
 const deleteUser = async (req, res) => {
+  console.log('deleteUser called with ID:', req.params.id);
   try {
     const param = req.params.id;
 
