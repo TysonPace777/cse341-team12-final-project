@@ -5,8 +5,8 @@ const doc = {
         title: "Team 12 API",
         description: "planner api",
     },
-    host: "localhost:5000",
-    schemes: ["http"],
+    host: "cse341-team12-final-project.onrender.com",
+    schemes: ["https"],
 };
 
 const outputFile = "./swagger-output.json";
