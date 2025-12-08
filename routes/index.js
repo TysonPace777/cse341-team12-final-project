@@ -14,7 +14,12 @@ router.use('/goals', require("./goals"));
 router.use('/events', require("./events"));
 
 //Auth Redirect to Github 
-router.get('/login', passport.authenticate('github'), (req, res) => {});
+// router.get('/login', passport.authenticate('github'), (req, res) => {});
+router.get(
+  '/login',
+  passport.authenticate('github', { scope: ['user:email'] })
+);
+
 
 router.get('/github/callback', passport.authenticate('github', {
     failureRedirect: '/api-docs'

@@ -1,9 +1,13 @@
 // tests/setup.js
 const mongodb = require("../data/database");
 
-beforeAll(async () => {
-  process.env.NODE_ENV = "test";
+// Increase Jest timeout for slow DB connection
+jest.setTimeout(30000);
 
+beforeAll(async () => {
+  process.env.NODE_ENV = "test"; // Ensure test environment
+
+  // Initialize DB
   await new Promise((resolve, reject) => {
     mongodb.initDb((err) => {
       if (err) reject(err);
@@ -12,16 +16,8 @@ beforeAll(async () => {
   });
 });
 
-afterEach(async () => {
-  const db = mongodb.getDatabase().db();
-
-  await db.collection("events").deleteMany({});
-  await db.collection("goals").deleteMany({});
-  await db.collection("tasks").deleteMany({});
-  await db.collection("user").deleteMany({});
-});
-
 afterAll(async () => {
+  // Close MongoDB connection after all tests
   const client = mongodb.getDatabase();
   await client.close();
 });
