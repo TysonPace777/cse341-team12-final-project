@@ -125,7 +125,8 @@
                 "reps": { "type": "number" },
                 "where": { "type": "string" },
                 "day": { "type": "string" },
-                "time": { "type": "string" }
+                "time": { "type": "string" },
+                "year": { "type": "string" }
               }
             }
           }
@@ -158,7 +159,8 @@
                 "reps": { "type": "number" },
                 "where": { "type": "string" },
                 "day": { "type": "string" },
-                "time": { "type": "string" }
+                "time": { "type": "string" },
+                "year": { "type": "string" }
               }
             }
           }
